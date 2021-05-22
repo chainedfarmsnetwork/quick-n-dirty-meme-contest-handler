@@ -1,0 +1,52 @@
+{% extends 'base.html' %} {% block content %}
+
+<style>
+	tr:hover {
+		background-color: #ddd;
+	}
+</style>
+
+<div style="margin: auto; text-align: center">
+	<a href="{% url 'web:index' %}">
+		<span>Back to list</span>
+	</a>
+	<h1>Contest: {{ contest.id }}</h1>
+	<span>From {{ contest.start_date }} to {{ contest.end_date }}</span>
+	<h1>Rules</h1>
+	<span>{{ contest.rules }}</span>
+	<h1>Prizes</h1>
+	<ul style="list-style: none; padding: 0">
+		<li>
+			<span>First place: {{ contest.prize_1 }}</span>
+		</li>
+		{% if contest.prize_2 %}
+		<li>
+			<span>Second place: {{ contest.prize_2 }}</span>
+		</li>
+		{% endif %} {% if contest.prize_3 %}
+		<li>
+			<span>Third place: {{ contest.prize_3 }}</span>
+		</li>
+		{% endif %}
+	</ul>
+</div>
+
+{% if not finished %}
+<a href="{% url 'web:post' contest.id %}" style="margin: 15px auto">
+	<button>Register your meme</button>
+</a>
+{% endif %}
+
+<table
+	style="margin: {% if not finished %}0{% else %}15px{% endif %} auto; width: 50%; border-collapse: collapse; border: 1px solid black"
+>
+	{% for post in posts.all %}
+	<tr>
+		<td style="border: 1px solid black; padding: 5px; text-align: center">
+			<a href="{{ post.tweet_url }}">{{ post.tweet_url }} by {{ post.twitter_id }}</a>
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+
+{% endblock %}
