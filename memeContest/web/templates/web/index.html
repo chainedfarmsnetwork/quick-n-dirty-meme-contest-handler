@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block content %}
+
+<style>
+	tr:hover {
+		background-color: #ddd;
+	}
+</style>
+
+<table style="margin: auto; width: 50%; border-collapse: collapse; border: 1px solid black">
+	<tr>
+		<th style="border: 1px solid black; padding: 5px">Contest Name</th>
+		<th style="border: 1px solid black; padding: 5px">Start Date</th>
+		<th style="border: 1px solid black; padding: 5px">End Date</th>
+	</tr>
+	{% for contest in contests_list.all %}
+	<tr style="text-align: center">
+		<td style="border: 1px solid black; padding: 5px">
+			<a href="{% url 'web:details' contest.id %}"> {{ contest.contest_id }} </a>
+		</td>
+		<td style="border: 1px solid black; padding: 5px">{{ contest.start_date }}</td>
+		<td style="border: 1px solid black; padding: 5px">{{ contest.end_date }}</td>
+	</tr>
+	{% endfor %}
+</table>
+
+{% endblock %}
