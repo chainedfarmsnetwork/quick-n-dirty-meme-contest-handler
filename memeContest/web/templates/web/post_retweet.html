@@ -2,7 +2,7 @@
 <h3 style="color: red; margin: auto auto 0">{{error_message}}</h3>
 {%endif%}
 
-<form action="{% url 'web:post' contest.id %}" method="post" style="margin: auto">
+<form action="{% url 'web:post_retweet' contest.id %}" method="post" style="margin: auto">
 	{% csrf_token %}
 	<ul style="list-style: none; text-align: center; width: 50%; margin: auto">
 		<li style="margin-top: 10px">
@@ -16,6 +16,10 @@
 		<li style="margin-top: 10px">
 			<label for="tweet_url">Tweet Url</label>
 			<input style="margin-top: 5px" name="tweet_url" type="text" />
+		</li>
+		<li style="margin-top: 10px">
+			<label for="wallet_address">Wallet Public Address</label>
+			<input style="margin-top: 5px" name="wallet_address" type="text" />
 		</li>
 		<input style="margin-top: 15px" type="submit" />
 	</ul>
