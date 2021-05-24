@@ -31,11 +31,15 @@
 	</ul>
 </div>
 
-{% if not finished %}
-<a href="{% url 'web:post' contest.id %}" style="margin: 15px auto">
+{% if not finished %} {% if contest_type == 'contest' %}
+<a href="{% url 'web:post_contest' contest.id %}" style="margin: 15px auto">
 	<button>Register your meme</button>
 </a>
-{% endif %}
+{% else %}
+<a href="{% url 'web:post_retweet' contest.id %}" style="margin: 15px auto">
+	<button>Register your quote tweet</button>
+</a>
+{% endif %} {% endif %}
 
 <table
 	style="margin: {% if not finished %}0{% else %}15px{% endif %} auto; width: 50%; border-collapse: collapse; border: 1px solid black"
